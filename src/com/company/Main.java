@@ -1,18 +1,20 @@
 package com.company;
-import java.lang.reflect.Array;
 import java.util.Scanner;
+import java.util.List;
+import java.util.Map;
+
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    private static ContactList contactList = new ContactList();
+
 
     public static void main(String[] args) {
+        AddressBook addressBook = new AddressBook();
         boolean quit = false;
-        int choice = 0;
         printInstructions();
         while (!quit) {
             System.out.println("Enter your choice: ");
-            choice = scanner.nextInt();
+            int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
@@ -20,19 +22,20 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    contactList.printContactList();
+                    addEntry(addressBook);
                     break;
                 case 2:
-                    addItem();
+                    String email = askForInput("email");
+                    addressBook.removeEntry(email);
                     break;
                 case 3:
-                    modifyItem();
+                    searchForSpecificEntry(addressBook);;
                     break;
                 case 4:
-                    removeItem();
+                    addressBook.printAddressBook();
                     break;
                 case 5:
-                    searchForItem();
+                    addressBook.deleteAddressBook();
                     break;
                 case 6:
                     quit = true;
@@ -43,47 +46,68 @@ public class Main {
 
     public static void printInstructions() {
         System.out.println("\nPress ");
-        System.out.println("\t 0 - To print choice options.");
-        System.out.println("\t 1 - To print the list of contacts.");
-        System.out.println("\t 2 - To add an contact to the list.");
-        System.out.println("\t 3 - To modify an contact in the list.");
-        System.out.println("\t 4 - To remove an contact from the list.");
-        System.out.println("\t 5 - To search for an contact in the list.");
+        System.out.println("\t 0 - To print choice options. ");
+        System.out.println("\t 1 - To add an contact to the list. ");
+        System.out.println("\t 2 - To remove a contact on the list. ");
+        System.out.println("\t 3 - To search for a specific contact. ");
+        System.out.println("\t 4 - To print contact list. ");
+        System.out.println("\t 5 - To delete contact list");
         System.out.println("\t 6 - To quit the application.");
     }
 
-    public static void addItem() {
-        System.out.print("Please enter first name: ");
-        contactList.addContactItem(scanner.nextLine());
+    public static String askForInput(String inputName) {
+        System.out.println("Please enter " + inputName + ": ");
+        return scanner.nextLine();
     }
 
-    public static void modifyItem() {
-        System.out.print("Current first name: ");
-        String itemNo = scanner.nextLine();
-        System.out.print("Enter replacement first name: ");
-        String newItem = scanner.nextLine();
-        contactList.modifyContactItem(itemNo, newItem);
-    }
-
-    public static void removeItem() {
-        System.out.print("Enter contact name: ");
-        String itemNo = scanner.nextLine();
-        contactList.removeContactItem(itemNo);
-
-    }
-
-    public static void searchForItem() {
-        System.out.print("Contact to search for: ");
-        String searchItem = scanner.nextLine();
-        if (contactList.onFile(searchItem)) {
-            System.out.println("Found " + searchItem + " in our contact list");
-        } else {
-            System.out.println(searchItem + " is not in our contact list");
+    public static int getIntInput() {
+        String ip = scanner.nextLine();
+        while (ip.length() == 0) {
+            ip = scanner.nextLine();
         }
+        return Integer.parseInt(ip);
     }
 
-    public static void processArrayList() {
-        ArrayList<String> newArray = new ArrayList<String>();
-        newArray.addAll(contactList.getContactList())
+    public static void addEntry(AddressBook addressBook) {
+        System.out.print("First name: ");
+        String firstName = scanner.nextLine();
+
+        System.out.print("Last name: ");
+        String lastName = scanner.nextLine();
+
+        System.out.print("Phone number: ");
+        String phone = scanner.nextLine();
+
+        System.out.print("E-mail: ");
+        String email = scanner.next().strip();
+
+        Entry entry = new Entry(firstName, lastName, phone, email);
+        addressBook.addEntry(entry);
+    }
+
+
+    public static void searchForSpecificEntry(AddressBook addressBook) {
+        System.out.println("Select an option");
+        System.out.println("1. Search By First Name");
+        System.out.println("2. Search By Last Name");
+        System.out.println("3. Search By Phone");
+        System.out.println("4. Search By Email");
+
+        int input = getIntInput();
+
+        Map<Integer, String> searchMapping =
+                Map.of(1, "firstName", 2, "lastName", 3, "phone", 4, "email");
+        if (input < 0 || input > 4) {
+            System.out.println("Invalid input! Try again");
+        } else {
+            System.out.print("Enter your search query: ");
+            String searchQuery = scanner.nextLine();
+            List<Entry> entries = addressBook.entrySearch(searchMapping.get(input), searchQuery);
+            System.out.println("Here are your search results:");
+            for (Entry entry : entries) {
+                System.out.println(entry);
+            }
+        }
+        System.out.println();
     }
 }
