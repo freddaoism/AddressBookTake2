@@ -22,17 +22,17 @@ public class Main {
                     printInstructions();
                     break;
                 case 1:
-                    addEntry(addressBook);
+                    addContact(addressBook);
                     break;
                 case 2:
                     String email = askForInput("email");
-                    addressBook.removeEntry(email);
+                    addressBook.removeContact(email);
                     break;
                 case 3:
                     searchForSpecificEntry(addressBook);;
                     break;
                 case 4:
-                    addressBook.printAddressBook();
+                    addressBook.printContactList();
                     break;
                 case 5:
                     addressBook.deleteAddressBook();
@@ -44,6 +44,7 @@ public class Main {
         }
     }
 
+    //print instructions
     public static void printInstructions() {
         System.out.println("\nPress ");
         System.out.println("\t 0 - To print choice options. ");
@@ -55,11 +56,13 @@ public class Main {
         System.out.println("\t 6 - To quit the application.");
     }
 
+    //asking for user input
     public static String askForInput(String inputName) {
         System.out.println("Please enter " + inputName + ": ");
         return scanner.nextLine();
     }
 
+    //also asking for user input
     public static int getIntInput() {
         String ip = scanner.nextLine();
         while (ip.length() == 0) {
@@ -68,7 +71,8 @@ public class Main {
         return Integer.parseInt(ip);
     }
 
-    public static void addEntry(AddressBook addressBook) {
+    //creating entry
+    public static void addContact(AddressBook addressBook) {
         System.out.print("First name: ");
         String firstName = scanner.nextLine();
 
@@ -85,9 +89,9 @@ public class Main {
         addressBook.addEntry(entry);
     }
 
-
+    //specific search query
     public static void searchForSpecificEntry(AddressBook addressBook) {
-        System.out.println("Select an option");
+        System.out.println("Options:");
         System.out.println("1. Search By First Name");
         System.out.println("2. Search By Last Name");
         System.out.println("3. Search By Phone");
@@ -98,12 +102,12 @@ public class Main {
         Map<Integer, String> searchMapping =
                 Map.of(1, "firstName", 2, "lastName", 3, "phone", 4, "email");
         if (input < 0 || input > 4) {
-            System.out.println("Invalid input! Try again");
+            System.out.println("That's not gonna work! Try again...");
         } else {
             System.out.print("Enter your search query: ");
             String searchQuery = scanner.nextLine();
             List<Entry> entries = addressBook.entrySearch(searchMapping.get(input), searchQuery);
-            System.out.println("Here are your search results:");
+            System.out.println("Search results:");
             for (Entry entry : entries) {
                 System.out.println(entry);
             }

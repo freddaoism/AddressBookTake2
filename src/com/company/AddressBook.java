@@ -22,7 +22,7 @@ public class AddressBook {
         return true;
     }
 
-    public boolean removeEntry(String email) {
+    public boolean removeContact(String email) {
         int index = getEntryIndexByEmail(email);
 
         if (index == -1) {
@@ -33,15 +33,6 @@ public class AddressBook {
         this.entries.remove(index);
         System.out.println("Contact deleted successfully\n");
         return true;
-    }
-
-    public  int getEntryIndexByEmail(String email){
-        for (int i = 0; i < this.entries.size(); i++){
-            if(this.entries.get(i).getEmail().equals(email)){
-                return i ;
-            }
-        }
-        return -1;
     }
 
     public List<Entry> entrySearch(String searchType, String searchQuery){
@@ -58,6 +49,14 @@ public class AddressBook {
 
     }
 
+    public  int getEntryIndexByEmail(String email){
+        for (int i = 0; i < this.entries.size(); i++){
+            if(this.entries.get(i).getEmail().equals(email)){
+                return i ;
+            }
+        }
+        return -1;
+    }
 
     private List<Entry> lookByFirstName(String firstName){
         List<Entry> ans = new ArrayList<>();
@@ -99,7 +98,7 @@ public class AddressBook {
         return new ArrayList<>();
     }
 
-    public void printAddressBook() {
+    public void printContactList() {
         if (this.entries.size() == 0) System.out.println("The contact list is empty");
         else{
             System.out.println("Printing the contact list...");
