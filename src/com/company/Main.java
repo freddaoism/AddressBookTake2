@@ -14,12 +14,15 @@ public class Main {
         AddressBook addressBook = new AddressBook();
 
         //this boolean shows us that the quit value starts off at false
+        //this will be the value that the switch statement will be taking in
         boolean quit = false;
 
         //The program starts off by printing the instructions onto the screen
+        //This project is an elaboration on a project that I had recently done also
         printInstructions();
 
         //Here is a switch statement that allows us to choose between our seven options
+        //When I was starting this project it looked very similar to a grocery list assignment that was on a Udemy course that Maurice reccommended (Shoutout to Maurice that was a great resource)
         while (!quit) {
             System.out.println("Enter your choice: ");
 
@@ -28,7 +31,7 @@ public class Main {
             scanner.nextLine();
 
             switch (choice) {
-                //Here we have a function used to print the instructions onto the console
+                //Here we have a function used to print the instructions onto the console and we will be using case 0 to call it into action
                 case 0:
                     printInstructions();
                     break;
@@ -37,6 +40,7 @@ public class Main {
                     addContact(addressBook);
                     break;
                     //this choice removes the contact
+                    //great example of polymorphism from my understanding because it allows Entry to take many different forms
                 case 2:
                     String email = askForInput("email");
                     addressBook.removeContact(email);

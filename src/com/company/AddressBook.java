@@ -8,6 +8,8 @@ public class AddressBook {
 
     private List<Entry>entries;
 
+    //I would say that setting up the list and arraylist utilities were some of the hardest things to implement since the last project didn't implement those
+    //utilities the same way
     public AddressBook(){
         this.entries = new ArrayList<>();
     }
@@ -96,6 +98,8 @@ public class AddressBook {
     }
 
     //This allows us to look a subject up by their email
+    //Most of the private classes that we have seen so far were a great example of abstraction where we have hidden most of the complexity from the user
+    //in order to increase the efficiency
     private List<Entry> lookByEmail(String email){
         List<Entry> ans = new ArrayList<>();
         for (Entry entry : this.entries) {
@@ -116,10 +120,10 @@ public class AddressBook {
         System.out.println();
     }
 
-    //this deletes the addressbook
+    //this deletes the addressbook using the clear dot operator
     public void deleteAddressBook(){
         this.entries.clear();
-        System.out.println("Deleted contact list. (You are now free to start over in a new city!) !\n");
+        System.out.println("Deleted contact list. (You are now free to start over in a new city!) \n");
     }
 
     @Override

@@ -3,6 +3,7 @@ package com.company;
 import java.util.Objects;
 
 //getters/setters and all that good stuff
+//Here we can see encapsulation in action, we are bundling a lot of data into a single unit (that unit being the Entry class)
 
 public class Entry {
     //only this class has access to the private variables
@@ -11,6 +12,7 @@ public class Entry {
     private String phone;
     private String email;
 
+    //This is our constructor that we will use to create Entry objects
     public Entry(String firstName, String lastName, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -18,6 +20,8 @@ public class Entry {
         this.email = email;
     }
 
+    //Something that I still find cool is that you can right click and automatically generate setters and getters...I've seen everybody here do it automatically before
+    //but this project was actually my first time doing it
     public String getFirstName() {
         return firstName;
     }
