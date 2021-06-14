@@ -9,34 +9,51 @@ public class Main {
 
 
     public static void main(String[] args) {
+
+        //We are creating a new instance of addressBook here
         AddressBook addressBook = new AddressBook();
+
+        //this boolean shows us that the quit value starts off at false
         boolean quit = false;
+
+        //The program starts off by printing the instructions onto the screen
         printInstructions();
+
+        //Here is a switch statement that allows us to choose between our seven options
         while (!quit) {
             System.out.println("Enter your choice: ");
+
+            //this uses the scanner class to take user input in as the choice integer value
             int choice = scanner.nextInt();
             scanner.nextLine();
 
             switch (choice) {
+                //Here we have a function used to print the instructions onto the console
                 case 0:
                     printInstructions();
                     break;
+                    //this choice adds a contact
                 case 1:
                     addContact(addressBook);
                     break;
+                    //this choice removes the contact
                 case 2:
                     String email = askForInput("email");
                     addressBook.removeContact(email);
                     break;
+                    //this choice lets us search for specific contacts
                 case 3:
                     searchForSpecificEntry(addressBook);;
                     break;
+                    //this choice is prints the contacts
                 case 4:
                     addressBook.printContactList();
                     break;
+                    //this deletes the address book
                 case 5:
                     addressBook.deleteAddressBook();
                     break;
+                    //and this quits our program
                 case 6:
                     quit = true;
                     break;

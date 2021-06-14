@@ -1,11 +1,11 @@
 package com.company;
-import java.util.Collection;
+
 import java.util.Objects;
 
-import java.util.Collection;
-import java.util.Objects;
+//getters/setters and all that good stuff
 
 public class Entry {
+    //only this class has access to the private variables
     private String firstName;
     private String lastName;
     private String phone;
@@ -49,7 +49,7 @@ public class Entry {
     public void setEmail() {
         this.email = email;
     }
-
+//here we have a few override annotations that indicate when the child class method is over-writing its base class method.
     @Override
     public boolean equals(Object o) {
         if (this == o) {
