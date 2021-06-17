@@ -6,7 +6,7 @@ import java.util.Objects;
 //Here we can see encapsulation in action, we are bundling a lot of data into a single unit (that unit being the Entry class)
 
 public class Entry {
-    //only this class has access to the private variables
+    //only this class has access to the private instance variables
     private String firstName;
     private String lastName;
     private String phone;
@@ -53,7 +53,8 @@ public class Entry {
     public void setEmail() {
         this.email = email;
     }
-//here we have a few override annotations that indicate when the child class method is over-writing its base class method.
+
+    //here we have a few override annotations that indicate when the child class method is over-writing its base class method.
     @Override
     public boolean equals(Object o) {
         if (this == o) {

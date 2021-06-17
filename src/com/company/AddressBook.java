@@ -75,7 +75,7 @@ public class AddressBook {
         return ans;
     }
 
-    //this allows us to look a contact up by their first name
+    //this allows us to look a contact up by their last name
     private List<Entry> lookByLastName(String lastName) {
         List<Entry> ans = new ArrayList<>();
         for (Entry entry : this.entries) {
